@@ -1,5 +1,5 @@
 const Search = () => {
-  return <p>Searchy search</p>
-}
+  return <p>Searchy search</p>;
+};
 
-export default Search
+export default Search;
