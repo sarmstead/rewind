@@ -26,3 +26,18 @@ export const getMovies = async (token: string) => {
     .then((payload) => payload.data)
     .catch((error) => error.message);
 };
+
+export const getMovie = async (token: string, id: string) => {
+  if (!process.env.MOVIES_ENDPOINT) {
+    throw new Error("Token endpoint is undefined.");
+  }
+
+  return axios
+    .get(`${process.env.MOVIES_ENDPOINT}/movies/${id}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    })
+    .then((payload) => payload.data)
+    .catch((error) => error.message);
+};

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
 import { getToken, getMovies } from "@/app/actions";
 import Movie from "@/app/components/Movie";
 
@@ -24,7 +25,15 @@ const Search = () => {
     <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
       {movies.data &&
         movies.data.map(({ id, title, posterUrl }) => {
-          return <Movie key={id} posterUrl={posterUrl} title={title} />;
+          return (
+            <Movie
+              key={id}
+              id={id}
+              token={token}
+              posterUrl={posterUrl}
+              title={title}
+            />
+          );
         })}
     </section>
   );
