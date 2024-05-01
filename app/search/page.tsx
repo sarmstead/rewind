@@ -5,6 +5,7 @@ import ResponsivePagination from "react-responsive-pagination";
 
 import { getToken, getMovies } from "@/app/actions";
 import Movie from "@/app/components/Movie";
+import Icon from "@/app/components/Icon";
 
 const Search = () => {
   const [token, setToken] = useState(" ");
@@ -45,13 +46,15 @@ const Search = () => {
             );
           })}
       </section>
-      <section>
+      <nav className="flex justify-center items-center  max-w-[352px]">
         <ResponsivePagination
           current={currentPage}
           total={movies.totalPages}
           onPageChange={setCurrentPage}
+          previousLabel={<Icon name="backarrow" />}
+          nextLabel={<Icon name="forwardarrow" />}
         />
-      </section>
+      </nav>
     </>
   );
 };

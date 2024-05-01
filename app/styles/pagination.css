@@ -1,0 +1,11 @@
+.pagination {
+  @apply flex items-center;
+}
+
+.page-item {
+  @apply flex items-center justify-center w-11 h-11 gap-2 text-gravy font-display font-medium;
+}
+
+.page-item.active {
+  @apply rounded-full border-gravy border-2;
+}
