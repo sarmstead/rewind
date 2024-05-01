@@ -6,6 +6,7 @@ import ResponsivePagination from "react-responsive-pagination";
 import { getToken, getMovies } from "@/app/actions";
 import Movie from "@/app/components/Movie";
 import Icon from "@/app/components/Icon";
+import Loading from "../components/Loading";
 
 const Search = () => {
   const [token, setToken] = useState(" ");
@@ -18,23 +19,25 @@ const Search = () => {
       setToken(t);
     };
 
-    const fetchInitialData = async () => {
+    const reloadData = async () => {
+      setMovies({ data: [], totalPages: 0 });
+
       const movies = await getMovies(token, { page: currentPage, limit: 25 });
       setMovies(movies);
     };
 
     if (token.length > 1) {
-      fetchInitialData();
+      reloadData();
     } else {
       fetchToken();
-      fetchInitialData();
+      reloadData();
     }
   }, [token, currentPage]);
   return (
     <>
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
-        {movies.data &&
-          movies.data.map(({ id, title, posterUrl }) => {
+      {movies.data && movies.data.length > 0 ? (
+        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+          {movies.data.map(({ id, title, posterUrl }) => {
             return (
               <Movie
                 key={id}
@@ -45,16 +48,21 @@ const Search = () => {
               />
             );
           })}
-      </section>
-      <nav className="flex justify-center items-center  max-w-[352px]">
-        <ResponsivePagination
-          current={currentPage}
-          total={movies.totalPages}
-          onPageChange={setCurrentPage}
-          previousLabel={<Icon name="backarrow" />}
-          nextLabel={<Icon name="forwardarrow" />}
-        />
-      </nav>
+        </section>
+      ) : (
+        <Loading />
+      )}
+      {movies.totalPages > 1 && (
+        <nav className="flex justify-center items-center  max-w-[352px]">
+          <ResponsivePagination
+            current={currentPage}
+            total={movies.totalPages}
+            onPageChange={setCurrentPage}
+            previousLabel={<Icon name="backarrow" />}
+            nextLabel={<Icon name="forwardarrow" />}
+          />
+        </nav>
+      )}
     </>
   );
 };

@@ -1,10 +1,10 @@
-import type { IconProps } from "@/app/types";
+import type { SvgProps } from "@/app/types";
 
 const ForwardArrow = ({
   height = "40",
   fill = "#555555",
   width = "40",
-}: IconProps) => {
+}: SvgProps) => {
   return (
     <svg
       width={width}

@@ -1,6 +1,6 @@
-import type { IconProps } from "@/app/types"
+import type { SvgProps } from "@/app/types"
 
-const BackArrow = ({ height = "40", fill = "#555555", width = "40" }: IconProps) => {
+const BackArrow = ({ height = "40", fill = "#555555", width = "40" }: SvgProps) => {
   return (
     <svg
       width={width}

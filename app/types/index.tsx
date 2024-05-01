@@ -1,4 +1,4 @@
-export type IconProps = {
+export type SvgProps = {
   height?: string;
   fill?: string;
   name?: string;

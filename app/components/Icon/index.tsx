@@ -1,8 +1,8 @@
-import type { IconProps } from "@/app/types";
+import type { SvgProps } from "@/app/types";
 import BackArrow from "@/app/components/Icon/BackArrow";
 import ForwardArrow from "@/app/components/Icon/ForwardArrow";
 
-const Icon = (props: IconProps) => {
+const Icon = (props: SvgProps) => {
   switch (props.name?.toLowerCase()) {
     case "backarrow":
       return <BackArrow {...props} />;
