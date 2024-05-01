@@ -6,7 +6,8 @@ import ResponsivePagination from "react-responsive-pagination";
 import { getToken, getMovies } from "@/app/actions";
 import Movie from "@/app/components/Movie";
 import Icon from "@/app/components/Icon";
-import Loading from "../components/Loading";
+import Loading from "@/app/components/Loading";
+import SearchBar from "@/app/components/SearchBar";
 
 const Search = () => {
   const [token, setToken] = useState(" ");
@@ -35,6 +36,7 @@ const Search = () => {
   }, [token, currentPage]);
   return (
     <>
+      <SearchBar />
       {movies.data && movies.data.length > 0 ? (
         <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
           {movies.data.map(({ id, title, posterUrl }) => {

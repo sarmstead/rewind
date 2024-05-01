@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bluey: "1405C4",
+        bluey: "#1405c4",
         gravy: {
           100: "#d9d9d9",
           DEFAULT: "#555555",
