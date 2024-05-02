@@ -41,7 +41,7 @@ const Search = () => {
     }
   }, [token, currentPage]);
 
-  if (error) {
+  if (error && movies.data?.length < 1) {
     return (
       <>
         <SearchBar token={token} setMovies={setMovies} setError={setError} />
