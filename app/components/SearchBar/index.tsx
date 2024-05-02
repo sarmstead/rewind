@@ -24,10 +24,14 @@ const SearchBar = ({ setError, setMovies, token }: SearchBarProps) => {
   const [genreMenuOpen, setGenreMenuOpen] = useState(false);
   const [genreList, setGenreList] = useState([]);
 
-  const genres = useMemo(async () => {
-    const genres = await getGenres(token);
-    setGenreList(genres.data?.map((genre: { title: string }) => genre.title));
-  }, [token]);
+  const fetchAllGenres = async () => {
+    if (genreList.length < 1) {
+      const genres = await getGenres(token);
+      setGenreList(genres.data?.map((genre: { title: string }) => genre.title));
+    }
+
+    setGenreMenuOpen((prevVal) => !prevVal)
+  };
 
   const selectGenre = (genre: string) => {
     genre === "--" ? setSearchGenre(" ") : setSearchGenre(genre);
@@ -81,7 +85,7 @@ const SearchBar = ({ setError, setMovies, token }: SearchBarProps) => {
           {searchGenre.length <= 1 ? (
             <button
               className="flex gap-2 items-center uppercase text-gravy font-display text-xl font-medium px-6"
-              onClick={() => setGenreMenuOpen((prevVal) => !prevVal)}
+              onClick={fetchAllGenres}
             >
               Genres
               {genreMenuOpen ? (
