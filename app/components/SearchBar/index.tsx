@@ -126,32 +126,34 @@ const SearchBar = ({ setError, setMovies, token }: SearchBarProps) => {
             </button>
           )}
           {genreMenuOpen && (
-            <ul
-              className="absolute top-12 right-0 p-3 rounded-2xl border-[1px] border-gravy-100 w-[250px] h-[216px] overflow-y-auto bg-white"
-              ref={genreListRef}
-            >
-              <li>
-                <button
-                  title="None"
-                  className="genres__item"
-                  onClick={() => selectGenre("--")}
-                >
-                  --
-                </button>
-              </li>
-              {genreList &&
-                genreList.map((genre) => (
-                  <li key={genre}>
-                    <button
-                      title={genre}
-                      className="genres__item"
-                      onClick={() => selectGenre(genre)}
-                    >
-                      {genre}
-                    </button>
-                  </li>
-                ))}
-            </ul>
+            <div className="absolute top-12 right-0 p-3 rounded-2xl border-[1px] border-gravy-100  overflow-y-hidden bg-white">
+              <ul
+                className="py-3 w-[250px] h-[216px] overflow-y-auto bg-white"
+                ref={genreListRef}
+              >
+                <li>
+                  <button
+                    title="None"
+                    className="genres__item"
+                    onClick={() => selectGenre("--")}
+                  >
+                    --
+                  </button>
+                </li>
+                {genreList &&
+                  genreList.map((genre) => (
+                    <li key={genre}>
+                      <button
+                        title={genre}
+                        className="genres__item"
+                        onClick={() => selectGenre(genre)}
+                      >
+                        {genre}
+                      </button>
+                    </li>
+                  ))}
+              </ul>
+            </div>
           )}
         </div>
       </div>
