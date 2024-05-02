@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @import "@/app/styles/pagination.css";
-@import "@/app/styles/genres.css";
 
 
 @layer base {

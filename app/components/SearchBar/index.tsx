@@ -5,7 +5,6 @@ import {
   SetStateAction,
   useEffect,
   useMemo,
-  useRef,
   useState,
 } from "react";
 
@@ -25,33 +24,12 @@ const SearchBar = ({ setError, setMovies, token }: SearchBarProps) => {
   const [genreMenuOpen, setGenreMenuOpen] = useState(false);
   const [genreList, setGenreList] = useState([]);
 
-  const genreListRef = useRef<HTMLUListElement>(null);
-
   const genres = useMemo(async () => {
     const genres = await getGenres(token);
     setGenreList(genres.data?.map((genre: { title: string }) => genre.title));
   }, [token]);
 
   const selectGenre = (genre: string) => {
-    const list = genreListRef.current;
-    document
-      .querySelector(".genres__item--selected")
-      ?.classList.remove("genres__item--selected");
-
-    if (list) {
-      Array.from(list?.children).forEach((child) => {
-        if (
-          (child as HTMLElement).innerText.toLowerCase() === genre.toLowerCase()
-        ) {
-          (child as HTMLElement).firstElementChild?.classList.add(
-            "genres__item--selected",
-          );
-        }
-
-        return;
-      });
-    }
-
     genre === "--" ? setSearchGenre(" ") : setSearchGenre(genre);
     setGenreMenuOpen(false);
   };
@@ -127,14 +105,11 @@ const SearchBar = ({ setError, setMovies, token }: SearchBarProps) => {
           )}
           {genreMenuOpen && (
             <div className="absolute top-12 right-0 p-3 rounded-2xl border-[1px] border-gravy-100  overflow-y-hidden bg-white">
-              <ul
-                className="py-3 w-[250px] h-[216px] overflow-y-auto bg-white"
-                ref={genreListRef}
-              >
+              <ul className="py-3 w-[250px] h-[216px] overflow-y-auto bg-white">
                 <li>
                   <button
                     title="None"
-                    className="genres__item"
+                    className="uppercase text-gravy font-display text-xl font-medium px-3 py-1 max-w-[168px] overflow-x-hidden text-ellipsis"
                     onClick={() => selectGenre("--")}
                   >
                     --
@@ -145,7 +120,7 @@ const SearchBar = ({ setError, setMovies, token }: SearchBarProps) => {
                     <li key={genre}>
                       <button
                         title={genre}
-                        className="genres__item"
+                        className="uppercase text-gravy font-display text-xl font-medium px-3 py-1 max-w-[168px] overflow-x-hidden text-ellipsis"
                         onClick={() => selectGenre(genre)}
                       >
                         {genre}
