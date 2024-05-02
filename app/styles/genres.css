@@ -1,0 +1,7 @@
+.genres__item {
+  @apply uppercase text-gravy font-display text-xl font-medium px-3 py-1 max-w-[168px] overflow-x-hidden text-ellipsis;
+}
+
+.genres__item.genres__item--selected {
+  @apply text-white bg-bluey rounded-full;
+}

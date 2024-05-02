@@ -1,8 +1,15 @@
 "use client";
 
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { getMovies } from "@/app/actions";
+import {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
+import { getGenres, getMovies } from "@/app/actions";
 import Icon from "@/app/components/Icon/index";
 
 type SearchBarProps = {
@@ -14,7 +21,40 @@ type SearchBarProps = {
 const SearchBar = ({ setError, setMovies, token }: SearchBarProps) => {
   const [resultCount, setResultCount] = useState(0);
   const [searchTitle, setSearchTitle] = useState(" ");
-  const [searchGenre, setSearchGenre] = useState(" ");
+  const [searchGenre, setSearchGenre] = useState("");
+  const [genreMenuOpen, setGenreMenuOpen] = useState(false);
+  const [genreList, setGenreList] = useState([]);
+
+  const genreListRef = useRef<HTMLUListElement>(null);
+
+  const genres = useMemo(async () => {
+    const genres = await getGenres(token);
+    setGenreList(genres.data?.map((genre: { title: string }) => genre.title));
+  }, [token]);
+
+  const selectGenre = (genre: string) => {
+    const list = genreListRef.current;
+    document
+      .querySelector(".genres__item--selected")
+      ?.classList.remove("genres__item--selected");
+
+    if (list) {
+      Array.from(list?.children).forEach((child) => {
+        if (
+          (child as HTMLElement).innerText.toLowerCase() === genre.toLowerCase()
+        ) {
+          (child as HTMLElement).firstElementChild?.classList.add(
+            "genres__item--selected",
+          );
+        }
+
+        return;
+      });
+    }
+
+    genre === "--" ? setSearchGenre(" ") : setSearchGenre(genre);
+    setGenreMenuOpen(false);
+  };
 
   useEffect(() => {
     const runQuery = async () => {
@@ -24,15 +64,16 @@ const SearchBar = ({ setError, setMovies, token }: SearchBarProps) => {
         page: 1,
         limit: 25,
         search: searchTitle,
-        genre: "",
+        genre: searchGenre,
       });
+
       setMovies(movies);
       setResultCount(movies.data?.length);
       movies.data?.length > 0 ? setError(false) : setError(true);
     };
 
     runQuery();
-  }, [token, searchTitle, setError, setMovies]);
+  }, [searchGenre, searchTitle, setError, setMovies, token]);
 
   return (
     <section className="mb-24 w-full max-w-[954px]">
@@ -58,6 +99,56 @@ const SearchBar = ({ setError, setMovies, token }: SearchBarProps) => {
           className="pl-14 w-full min-h-11 bg-transparent rounded-full outline-blue-200 outline-offset-8 uppercase text-gravy font-display text-xl font-medium"
           onChange={(event) => setSearchTitle(event.target.value)}
         />
+        <div className="relative">
+          {searchGenre.length <= 1 ? (
+            <button
+              className="uppercase text-gravy font-display text-xl font-medium px-6"
+              onClick={() => setGenreMenuOpen((prevVal) => !prevVal)}
+            >
+              Genres
+            </button>
+          ) : (
+            <button
+              className="uppercase flex items-center gap-3 text-white bg-bluey rounded-full font-display text-xl font-medium ml-6 mr-1 px-3 py-1"
+              onClick={() => {
+                setGenreMenuOpen(false);
+                setSearchGenre("");
+              }}
+              title="Remove"
+            >
+              {searchGenre}
+              <span>X</span>
+            </button>
+          )}
+          {genreMenuOpen && (
+            <ul
+              className="absolute top-12 right-0 p-3 rounded-2xl border-[1px] border-gravy-100 w-[250px] h-[216px] overflow-y-auto bg-white"
+              ref={genreListRef}
+            >
+              <li>
+                <button
+                  title="None"
+                  className="genres__item"
+                  onClick={() => selectGenre("--")}
+                >
+                  --
+                </button>
+              </li>
+              {genreList &&
+                genreList.map((genre) => (
+                  <li key={genre}>
+                    <button
+                      title={genre}
+                      className="genres__item"
+                      onClick={() => selectGenre(genre)}
+                    >
+                      {genre}
+                    </button>
+                  </li>
+                ))}
+            </ul>
+          )}
+        </div>
       </div>
     </section>
   );
