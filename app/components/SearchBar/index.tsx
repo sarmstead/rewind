@@ -102,10 +102,15 @@ const SearchBar = ({ setError, setMovies, token }: SearchBarProps) => {
         <div className="relative">
           {searchGenre.length <= 1 ? (
             <button
-              className="uppercase text-gravy font-display text-xl font-medium px-6"
+              className="flex gap-2 items-center uppercase text-gravy font-display text-xl font-medium px-6"
               onClick={() => setGenreMenuOpen((prevVal) => !prevVal)}
             >
               Genres
+              {genreMenuOpen ? (
+                <Icon name="caretup" />
+              ) : (
+                <Icon name="caretdown" />
+              )}
             </button>
           ) : (
             <button
