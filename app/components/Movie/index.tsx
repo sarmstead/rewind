@@ -3,7 +3,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
 
-import { getToken, getMovie } from "@/app/actions";
+import { getMovie } from "@/app/actions";
+import Details from "@/app/components/Movie/Details";
 
 type MovieProps = {
   posterUrl: string;
@@ -35,18 +36,13 @@ const Movie = ({ id, posterUrl, title, token }: MovieProps) => {
     <article className="max-w-[233px] max-h-[331px]">
       <button onClick={toggleDetails}>
         {details ? (
-          <>
-            <h2>{title}</h2>
-            <p>{movieData.rating}</p>
-            <p>{movieData.summary}</p>
-            {movieData.genres.length > 0 && (
-              <div className="flex">
-                {movieData.genres.map(({ id, title }) => (
-                  <p key={id}>{title}</p>
-                ))}
-              </div>
-            )}
-          </>
+          <Details
+          genres={movieData.genres}
+          rating={movieData.rating}
+          summary={movieData.summary}
+          title={title}
+          />
+
         ) : (
           <img
             src={posterUrl}
