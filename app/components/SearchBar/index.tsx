@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import { getGenres, getMovies } from "@/app/actions";
 import Icon from "@/app/components/Icon/index";
@@ -15,14 +9,21 @@ type SearchBarProps = {
   token: string;
   setMovies: Dispatch<SetStateAction<{ data: never[]; totalPages: number }>>;
   setError: Dispatch<SetStateAction<boolean>>;
+  movieData: { data: never[]; totalPages: number };
 };
 
-const SearchBar = ({ setError, setMovies, token }: SearchBarProps) => {
+const SearchBar = ({
+  movieData,
+  setError,
+  setMovies,
+  token,
+}: SearchBarProps) => {
   const [resultCount, setResultCount] = useState(0);
   const [searchTitle, setSearchTitle] = useState(" ");
   const [searchGenre, setSearchGenre] = useState("");
   const [genreMenuOpen, setGenreMenuOpen] = useState(false);
   const [genreList, setGenreList] = useState([]);
+  const [initialRender, setInitialRender] = useState(true);
 
   const fetchAllGenres = async () => {
     if (genreList.length < 1) {
@@ -30,13 +31,29 @@ const SearchBar = ({ setError, setMovies, token }: SearchBarProps) => {
       setGenreList(genres.data?.map((genre: { title: string }) => genre.title));
     }
 
-    setGenreMenuOpen((prevVal) => !prevVal)
+    setGenreMenuOpen((prevVal) => !prevVal);
   };
 
   const selectGenre = (genre: string) => {
     genre === "--" ? setSearchGenre(" ") : setSearchGenre(genre);
     setGenreMenuOpen(false);
   };
+
+  useEffect(() => {
+    if (initialRender) {
+      setInitialRender(false);
+    }
+  }, [initialRender]);
+
+  useEffect(() => {
+    if (searchTitle.length > 1) {
+      if (movieData.data.length < 1) {
+        setTimeout(() => setError(true), 500);
+      } else {
+        setError(false);
+      }
+    }
+  });
 
   useEffect(() => {
     const runQuery = async () => {
@@ -51,7 +68,6 @@ const SearchBar = ({ setError, setMovies, token }: SearchBarProps) => {
 
       setMovies(movies);
       setResultCount(movies.data?.length);
-      movies.data?.length > 0 ? setError(false) : setError(true);
     };
 
     runQuery();
