@@ -23,7 +23,12 @@ const Search = () => {
     const reloadData = async () => {
       setMovies({ data: [], totalPages: 0 });
 
-      const movies = await getMovies(token, { page: currentPage, limit: 25 });
+      const movies = await getMovies(token, {
+        page: currentPage,
+        limit: 25,
+        search: "",
+        genre: "",
+      });
       setMovies(movies);
     };
 
@@ -36,7 +41,7 @@ const Search = () => {
   }, [token, currentPage]);
   return (
     <>
-      <SearchBar />
+      <SearchBar token={token} setMovies={setMovies} />
       {movies.data && movies.data.length > 0 ? (
         <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
           {movies.data.map(({ id, title, posterUrl }) => {

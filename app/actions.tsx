@@ -14,7 +14,12 @@ export const getToken = () => {
 
 export const getMovies = async (
   token: string,
-  options: { page: number; limit: number } = { page: 1, limit: 25 },
+  options: { page: number; limit: number; search: string; genre: "" } = {
+    page: 1,
+    limit: 25,
+    search: "",
+    genre: "",
+  },
 ) => {
   if (!process.env.MOVIES_ENDPOINT) {
     throw new Error("Token endpoint is undefined.");
@@ -22,7 +27,7 @@ export const getMovies = async (
 
   return axios
     .get(
-      `${process.env.MOVIES_ENDPOINT}/movies?page=${options.page}&limit=${options.limit}`,
+      `${process.env.MOVIES_ENDPOINT}/movies?page=${options.page}&limit=${options.limit}&search=${options.search}&genre=${options.genre}`,
       {
         headers: {
           authorization: `Bearer ${token}`,
