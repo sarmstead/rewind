@@ -13,6 +13,7 @@ const Search = () => {
   const [token, setToken] = useState(" ");
   const [movies, setMovies] = useState({ data: [], totalPages: 0 });
   const [currentPage, setCurrentPage] = useState(1);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchToken = async () => {
@@ -39,9 +40,20 @@ const Search = () => {
       reloadData();
     }
   }, [token, currentPage]);
+
+  if (error) {
+    return (
+      <>
+        <SearchBar token={token} setMovies={setMovies} setError={setError} />
+        <p className="font-bold text-bluey text-5xl font-display flex flex-col min-h-[75vh] items-center justify-center">
+          Bummer! No results found ...
+        </p>
+      </>
+    );
+  }
   return (
     <>
-      <SearchBar token={token} setMovies={setMovies} />
+      <SearchBar token={token} setMovies={setMovies} setError={setError} />
       {movies.data && movies.data.length > 0 ? (
         <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
           {movies.data.map(({ id, title, posterUrl }) => {

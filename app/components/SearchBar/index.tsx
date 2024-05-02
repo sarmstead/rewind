@@ -8,9 +8,10 @@ import Icon from "@/app/components/Icon/index";
 type SearchBarProps = {
   token: string;
   setMovies: Dispatch<SetStateAction<{ data: never[]; totalPages: number }>>;
+  setError: Dispatch<SetStateAction<boolean>>;
 };
 
-const SearchBar = ({ token, setMovies }: SearchBarProps) => {
+const SearchBar = ({ setError, setMovies, token }: SearchBarProps) => {
   const [resultCount, setResultCount] = useState(0);
   const [searchTitle, setSearchTitle] = useState(" ");
   const [searchGenre, setSearchGenre] = useState(" ");
@@ -27,10 +28,11 @@ const SearchBar = ({ token, setMovies }: SearchBarProps) => {
       });
       setMovies(movies);
       setResultCount(movies.data?.length);
+      movies.data?.length > 0 ? setError(false) : setError(true);
     };
 
     runQuery();
-  }, [token, searchTitle, setMovies]);
+  }, [token, searchTitle, setError, setMovies]);
 
   return (
     <section className="mb-24 w-full max-w-[954px]">
