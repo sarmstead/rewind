@@ -65,7 +65,7 @@ const Search = () => {
         movieData={movies}
       />
       {movies.data && movies.data.length > 0 ? (
-        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-5">
+        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-5 mb-24">
           {movies.data.map(({ id, title, posterUrl }) => {
             return (
               <Movie
