@@ -10,7 +10,7 @@ type PreviewProps = {
 const Preview = ({ src, title }: PreviewProps) => {
   if (!src) {
     return (
-      <div className="relative h-[375px] bg-bluey flex flex-col justify-end rounded-2xl">
+      <div className="relative h-[375px] min-w-[233px] bg-bluey flex flex-col justify-end rounded-2xl">
         <div className="absolute top-6 right-3">
           <Logo fill="#dcdcdc" height="28" width="62" />
         </div>

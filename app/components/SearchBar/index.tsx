@@ -74,7 +74,7 @@ const SearchBar = ({
   }, [searchGenre, searchTitle, setError, setMovies, token]);
 
   return (
-    <section className="mb-16 lg:mb-24 w-full max-w-[954px] px-5 lg:px-0 mx-auto">
+    <section className="mb-16 lg:mb-24 w-full lg:w-[954px] max-w-[954px] px-5 lg:px-0 mx-auto">
       <h2 className="text-bluey font-bold text-3xl lg:text-5xl mb-6">
         Find your next fav ❤️
       </h2>
