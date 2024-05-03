@@ -1,3 +1,5 @@
+import Rating from "@/app/components/Movie/Rating";
+
 type DetailsProps = {
   genres: { id: string; title: string }[];
   rating: string;
@@ -16,17 +18,6 @@ const Details = ({ genres, rating, summary, title }: DetailsProps) => {
 };
 export default Details;
 
-const Rating = ({ rating }: { rating: string }) => {
-  if (!rating)
-    return <p className="text-left italic font-sans">Rating not found</p>;
-
-  return (
-    <p className="flex items-center justify-center w-fit min-w-24 h-6 border-white border-2 rounded-full font-display font-medium text-sm">
-      {rating}
-    </p>
-  );
-};
-
 const Summary = ({ summary }: { summary: string }) => {
   if (!summary)
     return (
@@ -37,7 +28,7 @@ const Summary = ({ summary }: { summary: string }) => {
 };
 
 const Genres = ({ genres }: { genres: { id: string; title: string }[] }) => {
-  if (genres.length < 1) return null
+  if (genres.length < 1) return null;
 
   return (
     <div className="flex flex-wrap items-center gap-x-2">
@@ -59,5 +50,5 @@ const Genres = ({ genres }: { genres: { id: string; title: string }[] }) => {
         );
       })}
     </div>
-  )
-}
+  );
+};

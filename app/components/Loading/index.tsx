@@ -1,7 +1,7 @@
 import Logo from "@/app/components/Logo";
 
 const Loading = () => (
-  <aside className="min-h-screen flex justify-center items-center">
+  <aside className="py-80 flex justify-center items-center">
     <Logo />
   </aside>
 );
