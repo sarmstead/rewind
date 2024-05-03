@@ -17,7 +17,7 @@ const Footer = () => (
       </Link>
     </div>
     <p className="font-display text-white uppercase text-xs lg:text-sm">
-      Copyright © 2024 Sunjay Armstead
+      Copyright © {new Date().getFullYear()} Sunjay Armstead
     </p>
   </footer>
 );
