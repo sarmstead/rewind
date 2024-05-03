@@ -44,7 +44,12 @@ const Search = () => {
   if (error && movies.data?.length < 1) {
     return (
       <>
-        <SearchBar token={token} setMovies={setMovies} setError={setError} movieData={movies} />
+        <SearchBar
+          token={token}
+          setMovies={setMovies}
+          setError={setError}
+          movieData={movies}
+        />
         <p className="font-bold text-bluey text-5xl font-display flex flex-col min-h-[75vh] items-center justify-center">
           Bummer! No results found ...
         </p>
@@ -53,9 +58,14 @@ const Search = () => {
   }
   return (
     <>
-      <SearchBar token={token} setMovies={setMovies} setError={setError} movieData={movies} />
+      <SearchBar
+        token={token}
+        setMovies={setMovies}
+        setError={setError}
+        movieData={movies}
+      />
       {movies.data && movies.data.length > 0 ? (
-        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-5">
           {movies.data.map(({ id, title, posterUrl }) => {
             return (
               <Movie

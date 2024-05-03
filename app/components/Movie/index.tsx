@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import { getMovie } from "@/app/actions";
 import Details from "@/app/components/Movie/Details";
+import Preview from "@/app/components/Movie/Preview";
 
 type MovieProps = {
   posterUrl: string;
@@ -37,18 +38,13 @@ const Movie = ({ id, posterUrl, title, token }: MovieProps) => {
       <button onClick={toggleDetails}>
         {details ? (
           <Details
-          genres={movieData.genres}
-          rating={movieData.rating}
-          summary={movieData.summary}
-          title={title}
+            genres={movieData.genres}
+            rating={movieData.rating}
+            summary={movieData.summary}
+            title={title}
           />
-
         ) : (
-          <img
-            src={posterUrl}
-            alt={`${title} movie poster`}
-            className="w-[233px] h-[331px] object-cover"
-          />
+          <Preview src={posterUrl} title={title} />
         )}
       </button>
     </article>
