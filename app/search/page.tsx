@@ -43,7 +43,7 @@ const Search = () => {
 
   if (error && movies.data?.length < 1) {
     return (
-      <div className="py-24">
+      <div className="py-24 mx-auto">
         <SearchBar
           token={token}
           setMovies={setMovies}
