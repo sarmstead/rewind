@@ -43,14 +43,14 @@ const Search = () => {
 
   if (error && movies.data?.length < 1) {
     return (
-      <div className="py-24 mx-auto">
+      <div className="py-24 mx-auto px-5">
         <SearchBar
           token={token}
           setMovies={setMovies}
           setError={setError}
           movieData={movies}
         />
-        <p className="font-bold text-bluey text-5xl font-display flex flex-col min-h-[75vh] items-center justify-center">
+        <p className="font-bold text-bluey text-2xl lg:text-5xl font-display flex flex-col items-center justify-center py-32 px-5 lg:px-0">
           Bummer! No results found ...
         </p>
       </div>
