@@ -2,32 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@import "@/app/styles/pagination.css";
+@import "@/app/styles/footer.css";
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+
+@layer base {
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("/app/fonts/Montserrat-Medium.ttf") format('ttf');
   }
-}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+    src: url("/app/fonts/Montserrat-MediumItalic.ttf") format('ttf');
+  }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/app/fonts/Montserrat-Bold.ttf") format('ttf');
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: italic;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/app/fonts/Montserrat-BoldItalic.ttf") format('ttf');
+  }
+
+  @font-face {
+    font-family: 'Libre Franklin';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/app/fonts/LibreFranklin-Regular.ttf") format('ttf');
+  }
+
+  @font-face {
+    font-family: 'Libre Franklin';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/app/fonts/LibreFranklin-Italic.ttf") format('ttf');
+  }
+
+  @font-face {
+    font-family: 'Libre Franklin';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/app/fonts/LibreFranklin-Bold.ttf") format('ttf');
   }
 }
