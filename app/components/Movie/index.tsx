@@ -33,7 +33,7 @@ const Movie = ({ id, posterUrl, title, token }: MovieProps) => {
   };
 
   return (
-    <article className="max-w-[233px] max-h-[331px]">
+    <article className="max-w-[233px]">
       <button onClick={toggleDetails}>
         {details ? (
           <Details

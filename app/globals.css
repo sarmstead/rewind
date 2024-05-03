@@ -37,4 +37,28 @@
     font-display: swap;
     src: url("/app/fonts/Montserrat-BoldItalic.ttf") format('ttf');
   }
+
+  @font-face {
+    font-family: 'Libre Franklin';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/app/fonts/LibreFranklin-Regular.ttf") format('ttf');
+  }
+
+  @font-face {
+    font-family: 'Libre Franklin';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/app/fonts/LibreFranklin-Italic.ttf") format('ttf');
+  }
+
+  @font-face {
+    font-family: 'Libre Franklin';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/app/fonts/LibreFranklin-Bold.ttf") format('ttf');
+  }
 }

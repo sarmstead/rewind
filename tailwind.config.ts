@@ -18,6 +18,7 @@ const config: Config = {
         },
       },
       fontFamily: {
+        sans: ["'Libre Franklin'", ...defaultTheme.fontFamily.sans],
         display: ["Montserrat", ...defaultTheme.fontFamily.sans],
       },
     },
