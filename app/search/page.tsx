@@ -43,7 +43,7 @@ const Search = () => {
 
   if (error && movies.data?.length < 1) {
     return (
-      <>
+      <div className="py-24">
         <SearchBar
           token={token}
           setMovies={setMovies}
@@ -53,11 +53,11 @@ const Search = () => {
         <p className="font-bold text-bluey text-5xl font-display flex flex-col min-h-[75vh] items-center justify-center">
           Bummer! No results found ...
         </p>
-      </>
+      </div>
     );
   }
   return (
-    <>
+    <div className="py-16 lg:py-24">
       <SearchBar
         token={token}
         setMovies={setMovies}
@@ -82,7 +82,7 @@ const Search = () => {
         <Loading />
       )}
       {movies.totalPages > 1 && (
-        <nav className="flex justify-center items-center  max-w-[352px]">
+        <nav className="flex justify-center items-center mx-auto max-w-[352px]">
           <ResponsivePagination
             current={currentPage}
             total={movies.totalPages}
@@ -92,7 +92,7 @@ const Search = () => {
           />
         </nav>
       )}
-    </>
+    </div>
   );
 };
 

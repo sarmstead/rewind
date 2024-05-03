@@ -74,8 +74,8 @@ const SearchBar = ({
   }, [searchGenre, searchTitle, setError, setMovies, token]);
 
   return (
-    <section className="mb-24 w-full max-w-[954px]">
-      <h2 className="text-bluey font-bold text-5xl mb-6">
+    <section className="mb-16 lg:mb-24 w-full max-w-[954px] px-5 lg:px-0 mx-auto">
+      <h2 className="text-bluey font-bold text-3xl lg:text-5xl mb-6">
         Find your next fav ❤️
       </h2>
       {resultCount > 0 && searchTitle.length > 1 && (
@@ -86,7 +86,7 @@ const SearchBar = ({
       )}
 
       <div className="relative border-2 border-bluey rounded-full min-h-11 flex items-center justify-between w-full">
-        <div className="absolute left-6">
+        <div className="absolute left-2 lg:left-6">
           <Icon name="magnifyingglass" />
         </div>
         <input
@@ -94,13 +94,13 @@ const SearchBar = ({
           id="search"
           name="search"
           placeholder="Search ..."
-          className="pl-14 w-full min-h-11 bg-transparent rounded-l-full outline-blue-200 outline-offset-4 uppercase text-gravy font-display text-xl font-medium"
+          className="pl-9 lg:pl-14 w-full min-h-11 bg-transparent rounded-l-full outline-blue-200 outline-offset-4 uppercase text-gravy font-display lg:text-xl font-medium"
           onChange={(event) => setSearchTitle(event.target.value)}
         />
         <div className="relative">
           {searchGenre.length <= 1 ? (
             <button
-              className="flex gap-2 items-center uppercase text-gravy font-display text-xl font-medium px-6"
+              className="flex lg:gap-2 items-center uppercase text-gravy font-display lg:text-xl font-medium px-3 lg:px-6"
               onClick={fetchAllGenres}
             >
               Genres
@@ -112,7 +112,7 @@ const SearchBar = ({
             </button>
           ) : (
             <button
-              className="uppercase flex items-center gap-3 text-white bg-bluey rounded-full font-display text-xl font-medium ml-6 mr-1 px-3 py-1"
+              className="uppercase flex items-center gap-3 text-white bg-bluey rounded-full font-display lg:text-xl font-medium ml-6 mr-1 px-3 py-1"
               onClick={() => {
                 setGenreMenuOpen(false);
                 setSearchGenre("");
@@ -124,12 +124,12 @@ const SearchBar = ({
             </button>
           )}
           {genreMenuOpen && (
-            <div className="absolute top-12 right-0 p-3 rounded-2xl border-[1px] border-gravy-100  overflow-y-hidden bg-white">
+            <div className="absolute top-12 right-0 p-3 rounded-2xl border-[1px] border-gravy-100 z-10 overflow-y-hidden bg-white">
               <ul className="py-3 w-[250px] h-[216px] overflow-y-auto bg-white">
                 <li>
                   <button
                     title="None"
-                    className="uppercase text-gravy font-display text-xl font-medium px-3 py-1 max-w-[168px] overflow-x-hidden text-ellipsis"
+                    className="uppercase text-gravy font-display lg:text-xl font-medium px-3 py-1 max-w-[168px] overflow-x-hidden text-ellipsis"
                     onClick={() => selectGenre("--")}
                   >
                     --
@@ -140,7 +140,7 @@ const SearchBar = ({
                     <li key={genre}>
                       <button
                         title={genre}
-                        className="uppercase text-gravy font-display text-xl font-medium px-3 py-1 max-w-[168px] overflow-x-hidden text-ellipsis"
+                        className="uppercase text-gravy font-display lg:text-xl font-medium px-3 py-1 max-w-[168px] overflow-x-hidden text-ellipsis"
                         onClick={() => selectGenre(genre)}
                       >
                         {genre}
