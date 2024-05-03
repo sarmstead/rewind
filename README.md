@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Rewind
+Hit Rewind before you hit play!
 
-## Getting Started
+## About
+Rewind is a Next.js 14 app built with user interaction in mind. The movie API used in this project is the [movies-api](https://github.com/thisdot/movies-api) built by the fine folks at This Dot. One wonderful aspect of integrating with their API is that the payloads come down already paginated. That makes it easy to focus on user experience and limit payload size.
 
-First, run the development server:
+I, [@sarmstead](https://github.com/sarmstead/), am most proud of the responsiveness of this app. If you're looking for movies, you're likely like Dane. He's at the grocery store planning dinner and frantically searching for something to watch for movie night. Dane, like many users of this app, are on the go and want to bring their movie database with them.
+
+In future iterations, I'd like to tighten up the performance of this app with caching and storing data in user sessions. Though the data coming from the movies API is paginated, the calls to the endpoints can be quite expensive. Users like Dane need something that works well on weak cell signal! I'd also like to add a single movie view that shows more details beyond a summary and genres.
+
+## Development
+So you want to add features, huh?
+
+First, install all NPM packages.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+And then fire up the development server!
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Now go to [http://localhost:3000](http://localhost:3000) to start banging on features!
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Deployment
+Rewind is currently deployed on Vercel at [rewind.sunjayarmstead.com](https://rewind.sunjayarmstead.com). We also have preview deployments on all PRs to make QA easier. You'll see a link to preview deployments in an automated comment on any PR you create. Enjoy!
