@@ -63,7 +63,7 @@ const Home = () => {
 
   return (
     <>
-      <header className="bg-bluey py-14 lg:py-24 w-full lg:min-h-[500px] flex-col lg:flex-row flex items-center justify-center mb-5 gap-16">
+      <header className="bg-bluey py-14 lg:py-24 w-full lg:min-h-[500px] flex-col lg:flex-row flex items-center justify-center mb-5 gap-16 -mt-[1px]">
         <section className="relative max-w-[956px] w-full flex flex-col gap-8 lg:gap-16 px-5 flex-wrap">
           <div
             role="img"
