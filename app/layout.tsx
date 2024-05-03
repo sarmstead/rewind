@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "@/app/globals.css";
 import TopNav from "@/app/components/TopNav";
+import Footer from "@/app/components/Footer";
 
 export const metadata: Metadata = {
   title: "Rewind",
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body>
         <TopNav />
         <main className="flex flex-col items-center">{children}</main>
+        <Footer />
       </body>
     </html>
   );

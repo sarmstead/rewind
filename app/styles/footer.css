@@ -1,0 +1,12 @@
+.footer__logo {
+  svg {
+    height: auto;
+    width: 115px;
+  }
+
+  @media (min-width: 1024px) {
+    svg {
+      width: 175px;
+    }
+  }
+}
