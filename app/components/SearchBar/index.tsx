@@ -94,7 +94,7 @@ const SearchBar = ({
           id="search"
           name="search"
           placeholder="Search ..."
-          className="pl-14 w-full min-h-11 bg-transparent rounded-full outline-blue-200 outline-offset-8 uppercase text-gravy font-display text-xl font-medium"
+          className="pl-14 w-full min-h-11 bg-transparent rounded-l-full outline-blue-200 outline-offset-4 uppercase text-gravy font-display text-xl font-medium"
           onChange={(event) => setSearchTitle(event.target.value)}
         />
         <div className="relative">
