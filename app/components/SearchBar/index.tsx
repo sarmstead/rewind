@@ -78,12 +78,13 @@ const SearchBar = ({
       <h2 className="text-bluey font-bold text-3xl lg:text-5xl mb-6">
         Find your next fav ❤️
       </h2>
-      {resultCount > 0 && searchTitle.length > 1 && (
-        <p className="uppercase text-gravy font-display font-medium mb-6">
-          Found <strong>{resultCount}</strong>{" "}
-          {resultCount > 1 ? "movies" : "movie"} 😊
-        </p>
-      )}
+      {resultCount > 0 &&
+        (searchTitle.length > 1 || searchGenre.length > 0) && (
+          <p className="uppercase text-gravy font-display font-medium mb-6">
+            Found <strong>{resultCount}</strong>{" "}
+            {resultCount > 1 || resultCount === 0 ? "movies" : "movie"} 😊
+          </p>
+        )}
 
       <div className="relative border-2 border-bluey rounded-full min-h-11 flex items-center justify-between w-full">
         <div className="absolute left-2 lg:left-6">
